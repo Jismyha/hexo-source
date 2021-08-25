@@ -1,0 +1,20 @@
+name: "build-test"
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "releases/*"
+
+jobs:
+  test_msg_type_post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xiachufang/actions-feishu@v1.2
+        with:
+          webhook: https://open.feishu.cn/open-apis/bot/v2/hook/61ea9533-3ce8-4d1d-b717-d02955d6fe52
+          title: I'm title
+          content: |
+            I'm message body
+            from: ${{ github.repository }}
