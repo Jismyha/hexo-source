@@ -1,0 +1,50 @@
+
+name: Hexo Auto-Deploy
+on: [push]
+
+jobs:
+  build:
+    name: Hexo Auto-Deploy by GitHub Actions
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1. git checkout...
+      uses: actions/checkout@v1
+      
+    - name: 2. setup nodejs...
+      uses: actions/setup-node@v1
+    
+    - name: 3. install hexo...
+      run: |
+        npm install hexo-cli -g
+        npm install
+        
+    - name: 4. hexo generate public files...
+      run: |
+        hexo clean
+        hexo g  
+
+    - name: 5. set up deploy private key
+      run: |
+        mkdir -p ~/.ssh/
+        echo "${{ secrets.HEXO_DEPLOY_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+      
+    - name: 6. setup git information
+      run: |
+        git config --global user.name "Jismyha"
+        git config --global user.email "695003521@qq.com"
+        
+    - name: 7. deploy hexo
+      run: |
+        hexo d
+      
+    - name: 8. Use feishu bot 
+      uses: xiachufang/actions-feishu@v1.2
+      with:
+       webhook: https://open.feishu.cn/open-apis/bot/v2/hook/61ea9533-3ce8-4d1d-b717-d02955d6fe52
+       title: myHexoBlog
+       content: 博客更新完成
+       message_type: text
+  
