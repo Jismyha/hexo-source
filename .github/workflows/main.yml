@@ -21,6 +21,7 @@ jobs:
         
     - name: 4. hexo generate public files...
       run: |
+        cd /myHexoBlog
         hexo clean
         hexo g  
 
