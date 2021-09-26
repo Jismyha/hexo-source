@@ -16,11 +16,11 @@ jobs:
       - name: 3. install hexo...
         run: |
           npm install hexo-cli -g
+          cd ./myHexoBlog
           npm install
 
       - name: 4. hexo generate public files...
         run: |
-          cd ./myHexoBlog
           hexo clean
           hexo g
 
