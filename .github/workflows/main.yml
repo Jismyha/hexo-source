@@ -21,6 +21,7 @@ jobs:
 
       - name: 4. hexo generate public files...
         run: |
+          cd ./myHexoBlog
           hexo clean
           hexo g
 
@@ -38,6 +39,7 @@ jobs:
 
       - name: 7. deploy hexo
         run: |
+          cd ./myHexoBlog
           hexo d
 
       - name: 8. Use feishu bot
