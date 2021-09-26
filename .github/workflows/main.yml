@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: 2. setup nodejs...
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2.4.0
 
       - name: 3. install hexo...
         run: |
@@ -47,5 +47,5 @@ jobs:
         with:
           webhook: https://open.feishu.cn/open-apis/bot/v2/hook/61ea9533-3ce8-4d1d-b717-d02955d6fe52
           title: myHexoBlog
-          content: 博客更新完成
+          content: ${{ github.event.head_commit.message }}
           message_type: text
