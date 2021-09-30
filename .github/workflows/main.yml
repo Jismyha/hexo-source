@@ -16,12 +16,12 @@ jobs:
       - name: 3. install hexo...
         run: |
           npm install hexo-cli -g
-          cd ./myHexoBlog
+          cd ./hexosrc
           npm install
 
       - name: 4. hexo generate public files...
         run: |
-          cd ./myHexoBlog
+          cd ./hexosrc
           hexo clean
           hexo g
 
@@ -39,7 +39,7 @@ jobs:
 
       - name: 7. deploy hexo
         run: |
-          cd ./myHexoBlog
+          cd ./hexosrc
           hexo d
 
       - name: 8. Use feishu bot
