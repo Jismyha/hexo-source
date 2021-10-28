@@ -1,0 +1,4 @@
+[submodule "hexosrc/themes/butterfly"]
+	path = hexosrc/themes/butterfly
+	url = https://gitee.com/ku1ena/hexo-theme-butterfly.git
+	branch = master
